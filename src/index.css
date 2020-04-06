@@ -1,0 +1,11 @@
+body {
+  background-color: orange;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+.item.purchased {
+  text-decoration: line-through;
+}
