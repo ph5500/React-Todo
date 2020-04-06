@@ -6,7 +6,7 @@ import Todo from "./Todo";
 export default function TodoList(props) {
     return (
         <div>
-            {props.todoList.map(tak => (
+            {props.todoList.map(task => (
                 <Todo />
             ))}
         </div>

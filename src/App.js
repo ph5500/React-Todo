@@ -15,13 +15,34 @@ class App extends React.Component {
       todoList
     };
   }
+
+  addItem = (event, item) => {
+    event.preventDefault();
+    const newTask = {
+      task: item,
+      id: Date.now(),
+      completed: false
+    };
+    this.setState({
+      todoList: [...this.state.todoList, newTask]
+    });
+  };
+  toggleItem = itemId => {
+    console.log(itemId);
+  };
+
+  clearCompleted = event => {
+    event.preventDefault();
+    console.log(event);
+  };
+
   render() {
     return (
       <div>
         <TodoList
           todoList={this.state.todoList}
           toggleItem={this.toggleItem}
-          clearCompleted={this.cleraCompleted}
+          clearCompleted={this.clearCompleted}
         />
         <TodoForm addItem={this.addItem} />
         <h2>Welcome to your Todo App!</h2>
