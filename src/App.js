@@ -1,6 +1,21 @@
 import React from 'react';
 import TodoList from "./components/TodoList"
 import TodoForm from "./components/TodoForm";
+import "./index.css";
+
+// // Data format
+// const list = [
+//   {
+//     task: 'Organize Garage',
+//     id: 1528817077286,
+//     completed: false
+//   },
+//   {
+//     task: 'Bake Cookies',
+//     id: 1528817084358,
+//     completed: false
+//   }
+// ];
 
 
 class App extends React.Component {
@@ -10,30 +25,59 @@ class App extends React.Component {
 
   constructor() {
     super();
-    const todoList = [];
     this.state = {
-      todoList
+      item: "",
+      todoList: []
     };
   }
 
-  addItem = (event, item) => {
+  addTask = (event, inputName) => {
     event.preventDefault();
     const newTask = {
-      task: item,
+      task: inputName,
       id: Date.now(),
       completed: false
     };
+
     this.setState({
       todoList: [...this.state.todoList, newTask]
     });
   };
+
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.setState({
+      item: ""
+    });
+    this.addTask(event, this.state.item);
+  };
+
   toggleItem = itemId => {
-    console.log(itemId);
+    // console.log(itemId);
+    this.setState({
+      todoList: this.state.todoList.map(item => {
+        if (itemId === item.id) {
+          return {
+            ...item,
+            completed: !item.completed
+          };
+        }
+        return item;
+      })
+    });
   };
 
   clearCompleted = event => {
     event.preventDefault();
-    console.log(event);
+    // console.log(event);
+    this.setState({
+      todoList: this.state.todoList.filter(todo => !todo.completed)
+    });
+  };
+
+  handleChange = event => {
+    this.setState({ item: event.target.value });
   };
 
   render() {
@@ -42,9 +86,14 @@ class App extends React.Component {
         <TodoList
           todoList={this.state.todoList}
           toggleItem={this.toggleItem}
-          clearCompleted={this.clearCompleted}
+
         />
-        <TodoForm addItem={this.addItem} />
+        <TodoForm
+          clearCompleted={this.clearCompleted}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          todo={this.state.item}
+        />
         <h2>Welcome to your Todo App!</h2>
       </div>
     );
