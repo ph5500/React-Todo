@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoList from "./components/TodoList"
+import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
 import "./index.css";
 
@@ -85,9 +85,7 @@ class App extends React.Component {
       <div>
         <TodoList
           todoList={this.state.todoList}
-          toggleItem={this.toggleItem}
-
-        />
+          toggleItem={this.toggleItem} />
         <TodoForm
           clearCompleted={this.clearCompleted}
           handleChange={this.handleChange}
