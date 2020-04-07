@@ -1,0 +1,26 @@
+body {
+  background-color: orange;
+}
+
+.item {
+  cursor: pointer;
+}
+
+.item.completed {
+  text-decoration: line-through;
+  color: red;
+}
+
+button {
+  border-radius: 25px;
+  border: 2px solid #3b21ad;
+  color: white;
+  background-color: blue;
+  padding: 20px;
+  width: 200px;
+  height: 100px;
+}
+
+h2 {
+  font-size: 40px;
+}
